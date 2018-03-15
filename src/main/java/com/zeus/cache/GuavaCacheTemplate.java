@@ -26,7 +26,7 @@ public class GuavaCacheTemplate extends CacheAbstractTemplate {
     }
 
     /**
-     * 缓存击穿->双重锁检查方案
+     * 屏蔽缓存击穿->双重锁检查方案
      * @param key
      * @param clazz
      * @param cacheLoadable db具体处理方法
@@ -50,6 +50,15 @@ public class GuavaCacheTemplate extends CacheAbstractTemplate {
         }
     }
 
+    /**
+     * 存在缓存击穿
+     * @param key
+     * @param clazz
+     * @param cacheLoadable db具体处理方法
+     * @param expireTime
+     * @param <T>
+     * @return
+     */
     public <T> T queryCacheData(String key, TypeReference<T> clazz, CacheLoadable<T> cacheLoadable, int expireTime) {
         String json = getCacheDate(key);
         if (StringUtils.isNotEmpty(json) && !Objects.equals(json, "null")) {

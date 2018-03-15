@@ -69,5 +69,9 @@ public class CacheTemplateFactoryTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println(Student.class.hashCode());
+        System.out.println(new Student().hashCode());
+        System.out.println(new Student().hashCode());
     }    
 }
